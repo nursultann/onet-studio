@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ресторан "Гурман"</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Стиль хедера с фото-баннером */
+        header {
+            position: relative;
+            background-image: url('https://cdnstatic.rg.ru/uploads/images/180/09/83/765.jpg');
+            /* Замените на ваше изображение */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            /* Нижний уровень, затемнение */
+        }
+
+        header h1,
+        header p {
+            position: relative;
+            z-index: 2;
+            /* Верхний уровень, текст будет выше затемнения */
+        }
+
+        header h1 {
+            font-size: 60px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 20px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+        }
+
+        /* Навигация */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #FF5E62;
+        }
+
+        /* Секции */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fff;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        section p {
+            font-size: 20px;
+            color: #555;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        /* Секция карточек меню */
+        .menu-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .menu-card {
+            background-color: #fff;
+            width: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .menu-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .menu-card p {
+            font-size: 16px;
+            color: #777;
+        }
+
+        /* Локации */
+        .location-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .location-info .location {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+        }
+
+        .location-info .location h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .location-info .location p {
+            font-size: 16px;
+            color: #777;
+        }
+
+        /* Социальные сети */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            color: #333;
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #FF5E62;
+        }
+
+        /* Футер */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: #25D366;
+            /* Цвет кнопки WhatsApp */
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+        }
+
+        .whatsapp-button img {
+            width: 60px;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header с фото-баннером -->
+    <header>
+        <h1>Ресторан "Гурман"</h1>
+        <p>Лучшие блюда для вашего настроения!</p>
+    </header>
+
+    <!-- Навигация -->
+    <nav>
+        <ul>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#location">Наши локации</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <!-- О нас -->
+    <section id="about">
+        <h2>О нас</h2>
+        <p>Мы - ресторан "Гурман", место для настоящих ценителей вкусной еды и хорошей атмосферы. Приходите к нам, чтобы
+            насладиться не только качественной едой, но и атмосферой уюта.</p>
+    </section>
+
+    <!-- Меню -->
+    <section id="menu">
+        <h2>Меню</h2>
+        <p>У нас вы найдете широкий выбор блюд: от классических до уникальных авторских рецептов, которые удивят ваш
+            вкус.</p>
+        <div class="menu-cards">
+            <div class="menu-card">
+                <img src="https://avatars.mds.yandex.net/i?id=fe97426d6c252ff37622de367bc54806_l-7011710-images-thumbs&n=13"
+                    alt="Блюдо 1">
+                <h3>Паста Карбонара</h3>
+                <p>Сливочный соус, бекон, пармезан, свежий базилик.</p>
+            </div>
+            <div class="menu-card">
+                <img src="https://avatars.mds.yandex.net/i?id=c8476aeb5457a9ff13259e7192cf57f42838cf86-10348710-images-thumbs&n=13"
+                    alt="Блюдо 2">
+                <h3>Стейк Рибай</h3>
+                <p>Мраморная говядина, картофель фри, соус барбекю.</p>
+            </div>
+            <div class="menu-card">
+                <img src="https://avatars.mds.yandex.net/i?id=98b04c7eb562250b2ca065435dca16f0_l-7045478-images-thumbs&n=13"
+                    alt="Блюдо 3">
+                <h3>Пицца Маргарита</h3>
+                <p>Томаты, моцарелла, базилик, оливковое масло.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Локации -->
+    <section id="location">
+        <h2>Наши локации</h2>
+        <div class="location-info">
+            <div class="location">
+                <h3>Бишкек</h3>
+                <p>ул. Ленина 75, Бишкек</p>
+                <p>Часы работы: 10:00 - 23:00</p>
+            </div>
+            <div class="location">
+                <h3>Ош</h3>
+                <p>ул. Советская 42, Ош</p>
+                <p>Часы работы: 10:00 - 23:00</p>
+            </div>
+            <div class="location">
+                <h3>Джалал-Абад</h3>
+                <p>ул. Абая 118, Джалал-Абад</p>
+                <p>Часы работы: 10:00 - 23:00</p>
+            </div>
+        </div>
+
+        <!-- Встраиваем Google Map -->
+        <div style="width: 100%; height: 500px; margin-top: 40px;">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3187.017705237998!2d74.5781623145877!3d42.868756611663586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389ecb7c3d22ffb7%3A0x953b91cd2c2b7fe4!2z0J3Qu9C60LDRgtCw0LvQsNCy0YvQs9Cw0LTQsNC90YvQuCwg0L7Qu9GTOiBF9!5e0!3m2!1sru!2skg!4v1614768464989!5m2!1sru!2skg"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Социальные сети -->
+    <section>
+        <h2>Следите за нами</h2>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+            <a href="https://www.twitter.com/" target="_blank">Twitter</a>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <p>&copy; 2025 Ресторан "Гурман". Все права защищены.</p>
+    </footer>
+    <a href="https://wa.me/ВашНомерТелефона" target="_blank" class="whatsapp-button">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="60">
+    </a>
+</body>
+
+</html>
